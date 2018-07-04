@@ -1,10 +1,1 @@
-<h1>Welcome!</h1>
-
-<div class="login">
-  <% if current_user %>
-  Hello, <%= current_user.username %>
-  <%= link_to "Logout", logout_path, method: :delete %>
-  <% else %>
-  <%= link_to "Login With Github", github_login_path %>
-  <% end %>
-</div>
+<h1>Welcome to GitBub</h1>

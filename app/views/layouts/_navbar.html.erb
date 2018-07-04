@@ -1,0 +1,18 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">GitHub</a>
+    <div class="login">
+      <% if current_user %>
+      Hello, <%= link_to "#{current_user.username}", dashboard_path %>
+      <%= link_to "Logout", logout_path, method: :delete %>
+      <% else %>
+      <%= link_to "Login With Github", github_login_path %>
+      <% end %>
+    </div>
+  </nav>
