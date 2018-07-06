@@ -1,14 +1,10 @@
 class DashboardController < ApplicationController
    def show
+    @starred_repos = GitHubUser.new(current_user).starred_repos
 
-     response = Faraday.get("https://api.github.com/users/#{current_user.username}/starred?access_token=#{current_user.oauth_token}")
-    @starred_repos = JSON.parse(response.body)
+    @following = GitHubUser.new(current_user).following
 
-    response_2 = Faraday.get("https://api.github.com/users/#{current_user.username}/followers?access_token=#{current_user.oauth_token}")
-    @followers = JSON.parse(response_2.body)
-
-     response_3 = Faraday.get("https://api.github.com/users/#{current_user.username}/following?access_token=#{current_user.oauth_token}")
-
-     @following = JSON.parse(response_3.body)
+    @followers = GitHubUser.new(current_user).followers
   end
+
 end

@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   get '/auth/github', as: :github_login
   get '/auth/github/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/dashboard', to: 'dashboard#show'
+  get '/:username', to: 'dashboard#show'
+  get '/:username/repos', to: 'repos#index'
 end

@@ -1,21 +1,38 @@
-<h1> <%= current_user.username %>'s profile</h1>
+<main class='dashboard'>
+  <div class="profile">
+    <img class="main-picture" src= <%="#{current_user.avatar_url}"%> alt="user picture"> <br>
+    <div class="profile-text">
+      <h1> <%= current_user.name %> </h1>
+      <h4> <%= current_user.username %></h4>
+    </div>
+    <a href="/<%="#{current_user.username}"%>/repos"> Repositories</a> <br>
+      <%= link_to "Logout", logout_path, method: :delete %>
+  </div>
 
-<div class="profile">
-  <img src= <%="#{current_user.avatar_url}"%> alt="user picture">
-  <p>Stared Repos:</p>
-  <% @starred_repos.each do |s| %>
-    <p> Repo Name: <%= s['name'] %> </p>
-    <p> Repo Owner: <%= s['owner']['login'] %> </p>
-  <% end %>
+  <section class="starred">
+    <h3>Starred Repos:<%= @starred_repos.count %></h3>
+    <ul>
+      <% @starred_repos.each do |repo| %>
+      <li><%= link_to repo.name, repo.url %> </li>
+      <% end %>
+    </ul>
+  </section>
 
-  <p>Followers:</p>
-  <% @followers.each do |f| %>
-    <p> <%= f["login"] %> </p>
-    <img src= <%= f["avatar_url"] %> alt="following picture">
-  <% end %>
-  <p>Following:</p>
-  <% @following.each do |f| %>
-    <p> <%= f["login"] %> </p>
-    <img src= <%= f["avatar_url"] %> alt="following picture">
-  <% end %>
-</div>
+  <section>
+    <h3>Followers: <%= @followers.count %> </h3>
+    <ul>
+      <% @followers.each do |follower| %>
+      <li><%= link_to follower.login, follower.url %> </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section class="following">
+    <h3>Following: <%= @following.count %> </h3>
+    <ul>
+      <% @following.each do |follow| %>
+      <li><%= link_to follow.login, follow.url %> </li>
+      <% end %>
+    </ul>
+  </section>
+</main>

@@ -34,6 +34,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'shoulda-matchers'
   gem 'awesome_print'
+  gem 'webmock'
 end
 
 group :development do
